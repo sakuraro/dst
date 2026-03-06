@@ -1,0 +1,17 @@
+services:
+  dst_master:
+    image: dst
+    command: ["./dst_servers.sh", "run", "Master"]
+    build:
+      dockerfile: ./Dockerfile
+    network_mode: "host"
+    volumes:
+      - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+  dst_caves:
+    image: dst
+    command: ["./dst_servers.sh", "run", "Caves"]
+    network_mode: "host"
+    volumes:
+      - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+    depends_on:
+      - dst_master
