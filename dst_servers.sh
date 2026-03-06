@@ -53,7 +53,9 @@ function run()
     "${run_shared[@]}" -shard $1  | sed "s/^/$1:  /"
 }
 
-if [ "$1" == "install" ]; then
+if [ "$1" == "install_deps" ]; then
+    install_deps
+elif [ "$1" == "install" ]; then
     install
 elif [ "$1" == "run" ]; then
     run $2
