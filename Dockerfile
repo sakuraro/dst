@@ -1,4 +1,4 @@
-FROM debian:13
+FROM ubuntu:24.04
 ADD dst_servers.sh /root/
 
 WORKDIR /root
