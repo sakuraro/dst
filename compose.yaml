@@ -7,6 +7,7 @@ services:
     network_mode: "host"
     volumes:
       - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./dontstarvetogether_dedicated_server:/root/dontstarvetogether_dedicated_server
     pull_policy: "build"
 
   dst_caves:
