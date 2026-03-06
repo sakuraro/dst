@@ -1,14 +1,23 @@
 services:
+  dst:
+    image: dst
+    command: ["./dst_servers.sh", "install"]
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./dontstarvetogether_dedicated_server:/root/dontstarvetogether_dedicated_server
+    pull_policy: "build"
+
   dst_master:
     image: dst
     command: ["./dst_servers.sh", "run", "Master"]
-    build:
-      dockerfile: ./Dockerfile
     network_mode: "host"
     volumes:
       - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
       - ./dontstarvetogether_dedicated_server:/root/dontstarvetogether_dedicated_server
-    pull_policy: "build"
+    depends_on:
+      dst:
+        condition: service_completed_successfully
 
   dst_caves:
     image: dst
@@ -16,6 +25,9 @@ services:
     network_mode: "host"
     volumes:
       - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./dontstarvetogether_dedicated_server:/root/dontstarvetogether_dedicated_server
     depends_on:
-      - dst_master
-    pull_policy: "build"
+      dst:
+        condition: service_completed_successfully
+      dst_master:
+        condition: service_started
