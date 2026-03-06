@@ -18,13 +18,16 @@ function check_for_file()
 	fi
 }
 
-function install()
+function install_deps()
 {
     # install dependence
     dpkg --add-architecture i386
     apt update
     apt install -y wget libstdc++6:i386 libgcc1:i386 libcurl3-gnutls libcurl4-gnutls-dev:i386
+}
 
+function install()
+{
     # install game
     mkdir -p $steamcmd_dir
     cd $steamcmd_dir
