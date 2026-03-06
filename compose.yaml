@@ -18,3 +18,4 @@ services:
       - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
     depends_on:
       - dst_master
+    pull_policy: "build"
