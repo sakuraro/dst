@@ -15,6 +15,7 @@ services:
     volumes:
       - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
       - ./dontstarvetogether_dedicated_server:/root/dontstarvetogether_dedicated_server
+      - ./dedicated_server_mods_setup.lua:/root/dontstarvetogether_dedicated_server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
       dst:
         condition: service_completed_successfully
@@ -26,6 +27,7 @@ services:
     volumes:
       - ./MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
       - ./dontstarvetogether_dedicated_server:/root/dontstarvetogether_dedicated_server
+      - ./dedicated_server_mods_setup.lua:/root/dontstarvetogether_dedicated_server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
       dst:
         condition: service_completed_successfully

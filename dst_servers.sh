@@ -33,6 +33,11 @@ function install()
     cd $steamcmd_dir
     wget -qO - 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar -xvzf -
     chmod u+x ./steamcmd.sh
+    ./steamcmd.sh +force_install_dir "$install_dir" +login anonymous +app_update 343050 +quit
+}
+
+function validate()
+{
     ./steamcmd.sh +force_install_dir "$install_dir" +login anonymous +app_update 343050 validate +quit
 }
 
@@ -57,6 +62,8 @@ if [ "$1" == "install_deps" ]; then
     install_deps
 elif [ "$1" == "install" ]; then
     install
+elif [ "$1" == "validate" ]; then
+    validate
 elif [ "$1" == "run" ]; then
     run $2
 else
