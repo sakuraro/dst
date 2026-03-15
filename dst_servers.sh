@@ -1,7 +1,7 @@
 #!/bin/bash
 
 steamcmd_dir="$HOME/Steam"
-install_dir="$HOME/dontstarvetogether_dedicated_server"
+install_dir="$HOME/Steam/steamapps/common/Don't Starve Together Dedicated Server"
 cluster_name="MyDediServer"
 dontstarve_dir="$HOME/.klei/DoNotStarveTogether"
 
