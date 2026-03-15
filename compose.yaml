@@ -1,0 +1,30 @@
+services:
+  dst:
+    image: ghcr.io/sakuraro/dst:main
+    command: ["./dst_servers.sh", "install"]
+    build:
+      dockerfile: ./Dockerfile
+
+  dst_master:
+    image: ghcr.io/sakuraro/dst:main
+    command: ["./dst_servers.sh", "run", "Master"]
+    network_mode: "host"
+    volumes:
+      - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./config/dedicated_server_mods_setup.lua:/root/dontstarvetogether_dedicated_server/mods/dedicated_server_mods_setup.lua:ro
+    depends_on:
+      dst:
+        condition: service_completed_successfully
+
+  dst_caves:
+    image: ghcr.io/sakuraro/dst:main
+    command: ["./dst_servers.sh", "run", "Caves"]
+    network_mode: "host"
+    volumes:
+      - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./config/dedicated_server_mods_setup.lua:/root/dontstarvetogether_dedicated_server/mods/dedicated_server_mods_setup.lua:ro
+    depends_on:
+      dst:
+        condition: service_completed_successfully
+      dst_master:
+        condition: service_started
