@@ -11,7 +11,7 @@ services:
     network_mode: "host"
     volumes:
       - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
-      - ./config/dedicated_server_mods_setup.lua:/root/dontstarvetogether_dedicated_server/mods/dedicated_server_mods_setup.lua:ro
+      - ./config/dedicated_server_mods_setup.lua:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
       dst:
         condition: service_completed_successfully
@@ -22,7 +22,7 @@ services:
     network_mode: "host"
     volumes:
       - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
-      - ./config/dedicated_server_mods_setup.lua:/root/dontstarvetogether_dedicated_server/mods/dedicated_server_mods_setup.lua:ro
+      - ./config/dedicated_server_mods_setup.lua:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
       dst:
         condition: service_completed_successfully
