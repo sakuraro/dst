@@ -1,9 +1,11 @@
 services:
   dst:
     image: ghcr.io/sakuraro/dst:main
-    command: ["./dst_servers.sh", "install"]
     build:
       dockerfile: ./Dockerfile
+    command: ["./dst_servers.sh", "install"]
+    volumes:
+      - ./data/Don't Starve Together Dedicated Server:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server
 
   dst_master:
     image: ghcr.io/sakuraro/dst:main
@@ -11,6 +13,7 @@ services:
     network_mode: "host"
     volumes:
       - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./data/Don't Starve Together Dedicated Server:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server
       - ./config/dedicated_server_mods_setup.lua:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
       dst:
@@ -22,6 +25,7 @@ services:
     network_mode: "host"
     volumes:
       - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./data/Don't Starve Together Dedicated Server:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server
       - ./config/dedicated_server_mods_setup.lua:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
       dst:
