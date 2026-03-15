@@ -33,12 +33,12 @@ function install()
     cd $steamcmd_dir
     wget -qO - 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar -xvzf -
     chmod u+x ./steamcmd.sh
-    ./steamcmd.sh +force_install_dir "$install_dir" +login anonymous +app_update 343050 +quit
+    ./steamcmd.sh +login anonymous +app_update 343050 validate +quit
 }
 
 function validate()
 {
-    ./steamcmd.sh +force_install_dir "$install_dir" +login anonymous +app_update 343050 validate +quit
+    ./steamcmd.sh +login anonymous +app_update 343050 validate +quit
 }
 
 function run()
