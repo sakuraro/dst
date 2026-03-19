@@ -3,7 +3,6 @@
 steamcmd_dir="$HOME/Steam"
 install_dir="$HOME/Steam/steamapps/common/Don't Starve Together Dedicated Server"
 config_dir="$HOME/.klei/DoNotStarveTogether"
-cluster_name="MyDediServer"
 
 function fail()
 {
@@ -54,11 +53,12 @@ function validate()
 
 function run()
 {
+    cluster_name=$1
+    shard_name=$2
     # run game
     check_for_file "$config_dir/$cluster_name/cluster.ini"
     check_for_file "$config_dir/$cluster_name/cluster_token.txt"
-    check_for_file "$config_dir/$cluster_name/Master/server.ini"
-    check_for_file "$config_dir/$cluster_name/Caves/server.ini"
+    check_for_file "$config_dir/$cluster_name/$shard_name/server.ini"
 
     cd "$install_dir/bin64"
     run_shared=(./dontstarve_dedicated_server_nullrenderer_x64)
@@ -66,7 +66,7 @@ function run()
     run_shared+=(-cluster "$cluster_name")
     run_shared+=(-monitor_parent_process $$)
 
-    "${run_shared[@]}" -shard $1  | sed "s/^/$1:  /"
+    "${run_shared[@]}" -shard $shard_name  | sed "s/^/$shard_name:  /"
 }
 
 if [ "$1" == "install_deps" ]; then

@@ -9,7 +9,7 @@ services:
 
   dst_master:
     image: ghcr.io/sakuraro/dst:main
-    command: ["./dst_servers.sh", "run", "Master"]
+    command: ["./dst_servers.sh", "run", "MyDediServer", "Master"]
     network_mode: "host"
     volumes:
       - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
@@ -21,7 +21,7 @@ services:
 
   dst_caves:
     image: ghcr.io/sakuraro/dst:main
-    command: ["./dst_servers.sh", "run", "Caves"]
+    command: ["./dst_servers.sh", "run", "MyDediServer", "Caves"]
     network_mode: "host"
     volumes:
       - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
