@@ -40,7 +40,7 @@ function install()
     cd $steamcmd_dir
     ./steamcmd.sh +login anonymous +app_update 343050 +quit
     # fix steamclient.so
-    cp ./linux64/steamclient.so "$install_dir/bin64/lib64/steamclient.so"
+    cp "$steamcmd_dir/linux64/steamclient.so" "$install_dir/bin64/lib64/steamclient.so"
 }
 
 function validate()
@@ -49,7 +49,7 @@ function validate()
     cd $steamcmd_dir
     ./steamcmd.sh +login anonymous +app_update 343050 validate +quit
     # fix steamclient.so
-    cp ./linux64/steamclient.so "$install_dir/bin64/lib64/steamclient.so"
+    cp "$steamcmd_dir/linux64/steamclient.so" "$install_dir/bin64/lib64/steamclient.so"
 }
 
 function run()
