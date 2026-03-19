@@ -36,14 +36,20 @@ function install_deps()
 
 function install()
 {
+    # install dont starve together
     cd $steamcmd_dir
     ./steamcmd.sh +login anonymous +app_update 343050 +quit
+    # fix steamclient.so
+    cp ./linux64/steamclient.so "$install_dir/bin64/lib64/steamclient.so"
 }
 
 function validate()
 {
+    # validate dont starve together
     cd $steamcmd_dir
     ./steamcmd.sh +login anonymous +app_update 343050 validate +quit
+    # fix steamclient.so
+    cp ./linux64/steamclient.so "$install_dir/bin64/lib64/steamclient.so"
 }
 
 function run()
