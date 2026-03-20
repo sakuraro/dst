@@ -9,10 +9,10 @@ services:
 
   dst_master:
     image: ghcr.io/sakuraro/dst:main
-    command: ["./dst_servers.sh", "run", "MyDediServer", "Master"]
+    command: ["./dst_servers.sh", "run", "${CLUSTER}", "Master"]
     network_mode: "host"
     volumes:
-      - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./config/${CLUSTER}:/root/.klei/DoNotStarveTogether/${CLUSTER}
       - ./data/Don't Starve Together Dedicated Server:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server
       - ./config/dedicated_server_mods_setup.lua:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
@@ -21,10 +21,10 @@ services:
 
   dst_caves:
     image: ghcr.io/sakuraro/dst:main
-    command: ["./dst_servers.sh", "run", "MyDediServer", "Caves"]
+    command: ["./dst_servers.sh", "run", "${CLUSTER}", "Caves"]
     network_mode: "host"
     volumes:
-      - ./config/MyDediServer:/root/.klei/DoNotStarveTogether/MyDediServer
+      - ./config/${CLUSTER}:/root/.klei/DoNotStarveTogether/${CLUSTER}
       - ./data/Don't Starve Together Dedicated Server:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server
       - ./config/dedicated_server_mods_setup.lua:/root/Steam/steamapps/common/Don't Starve Together Dedicated Server/mods/dedicated_server_mods_setup.lua:ro
     depends_on:
