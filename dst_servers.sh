@@ -76,7 +76,7 @@ elif [ "$1" == "install" ]; then
 elif [ "$1" == "validate" ]; then
     validate
 elif [ "$1" == "run" ]; then
-    run $2
+    run $2 $3
 else
     echo "无效参数"
 fi
